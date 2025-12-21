@@ -1,0 +1,27 @@
+#llm
+openai
+
+# llamaIndex
+llama-index
+llama-index-core
+llama-index-embeddings-openai
+llama-index-llms-openai
+llama-index-vector-stores-chroma
+
+#langchain
+langchain
+langchain-openai
+langchain-core
+langchain-community
+
+#vector db
+chromadb
+
+#pdf
+pypdf
+
+#utils
+python-dotenv
+tiktoken
+python-dateutil
+tqdm

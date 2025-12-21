@@ -1,0 +1,153 @@
+{
+  "timestamp": "2025-12-21T15:55:32.043537",
+  "summary": {
+    "total_test_cases": 8,
+    "average_scores": {
+      "answer_correctness": 0.75,
+      "context_relevancy": 0.384375,
+      "context_recall": 0.20833333333333331
+    },
+    "category_distribution": {
+      "summarization": 3,
+      "needle": 5
+    }
+  },
+  "detailed_results": [
+    {
+      "test_case": {
+        "query": "Give me a high-level summary of what happened in this insurance claim",
+        "expected_answer": "The claim involves a motor vehicle collision where the insured vehicle, a 2022 BMW 320i M Sport (registration LK22 RWT), was struck by a third-party vehicle. The incident occurred at an intersection, and liability was accepted by the third-party insurer. The total claim exposure was £22,625.20, including vehicle repairs, hire vehicle charges, medical treatment, and recovery costs. The policy excess of £650 remains recoverable.",
+        "category": "summarization",
+        "description": "High-level overview of the entire claim"
+      },
+      "response": {
+        "answer": "The insurance claim filed by Daniel Whitmore with Thames Mutual Insurance Ltd. was for a multi-vehicle collision on March 3, 2025. It was promptly reported, assigned to a senior motor claims adjuster, and liability was accepted by the third-party insurer, Thomas Ellison, following a review of evidence. Vehicle repairs began at an approved center, revealing additional structural damage that led to supplemental repairs. The total claim exposure is £22,625.20, covering repairs, hire vehicle charges, medical treatment, and recovery costs, with a recoverable excess of £650 through subrogation. The claim has been validated and is in the final stages, awaiting the receipt of recovery funds.",
+        "retrieved_context_count": 5
+      },
+      "scores": {
+        "answer_correctness": 0.5,
+        "context_relevancy": 0.7,
+        "context_recall": 0.5
+      }
+    },
+    {
+      "test_case": {
+        "query": "What is the overall timeline of the insurance claim from incident to resolution?",
+        "expected_answer": "The claim timeline includes: the incident occurred (collision at intersection), the claim was reported on the day of loss, liability was formally accepted by the third-party insurer following review, vehicle repairs were carried out, strip-down inspection revealed additional structural deformation requiring supplemental repair authorisation, repairs were completed to manufacturer standards, and the claim was resolved.",
+        "category": "summarization",
+        "description": "Timeline of events from incident to resolution"
+      },
+      "response": {
+        "answer": "The timeline of the insurance claim from incident to resolution includes significant events as follows:\n\n- **03 March 2025**: Claim registered at 13:10 after First Notice of Loss submission. Liability assessed as high-confidence third-party fault.\n- **04 March 2025**: Engineering referral for vehicle inspection issued at 09:55; hire vehicle authorization approved at 11:18.\n- **05 March 2025**: Police documentation uploaded by 15:41.\n- **19 March 2025**: Interim repair invoice received and reconciled by 10:22.\n- **24 March 2025**: Final repair invoice validated post-inspection at 14:37.\n- **02 April 2025**: Medical expenses reconciliation completed at 09:08.\n- **08 April 2025**: Subrogation demand issued at 16:54.\n- **18 April 2025**: Recovery status reviewed; no disputes noted at 11:30.\n- **22 April 2025**: Internal file handover at 09:18; policyholder notified by 11:06.\n- **23 April 2025**: Third-party insurer acknowledges subrogation demand by 14:42.\n- **25 April 2025**: Payment schedule follow-up at 10:30.\n- **29 April 2025**: Recovery status review diary note entered at 16:05.\n- **02 May 2025**: Internal audit check completed at 09:12.\n- **06 May 2025**: Claim pending recovery receipt at 15:47.\n\nThe claim's progression included initial notification, coverage validation, liability assessment, vehicle repair, medical monitoring, financial reconciliation, and recovery actions, all documented for traceability and compliance.",
+        "retrieved_context_count": 5
+      },
+      "scores": {
+        "answer_correctness": 0.5,
+        "context_relevancy": 0.8,
+        "context_recall": 0.6666666666666666
+      }
+    },
+    {
+      "test_case": {
+        "query": "What is the exact registration number of the insured vehicle?",
+        "expected_answer": "LK22 RWT",
+        "category": "needle",
+        "description": "Exact value retrieval - registration number"
+      },
+      "response": {
+        "answer": "LK22 RWT",
+        "retrieved_context_count": 5
+      },
+      "scores": {
+        "answer_correctness": 1.0,
+        "context_relevancy": 0.2,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "test_case": {
+        "query": "What was the total claim exposure amount?",
+        "expected_answer": "£22,625.20",
+        "category": "needle",
+        "description": "Exact value retrieval - monetary amount"
+      },
+      "response": {
+        "answer": "£22,625.20",
+        "retrieved_context_count": 5
+      },
+      "scores": {
+        "answer_correctness": 1.0,
+        "context_relevancy": 0.1,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "test_case": {
+        "query": "What was the policy excess amount?",
+        "expected_answer": "£650",
+        "category": "needle",
+        "description": "Exact value retrieval - policy excess"
+      },
+      "response": {
+        "answer": "£650",
+        "retrieved_context_count": 5
+      },
+      "scores": {
+        "answer_correctness": 1.0,
+        "context_relevancy": 0.4,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "test_case": {
+        "query": "What color was the insured vehicle?",
+        "expected_answer": "Alpine White",
+        "category": "needle",
+        "description": "Specific detail retrieval from detailed description"
+      },
+      "response": {
+        "answer": "Alpine White",
+        "retrieved_context_count": 5
+      },
+      "scores": {
+        "answer_correctness": 1.0,
+        "context_relevancy": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "test_case": {
+        "query": "Please summarize for me section 1 content",
+        "expected_answer": "Section 1 describes the policyholder's comprehensive private motor insurance policy, which includes full own-damage protection, third-party liability, uninsured driver coverage, personal injury benefits, and legal expense protection. The policy was active at the time of the incident with a collision excess of £650. The insured vehicle is a 2022 BMW 320i M Sport (registration LK22 RWT) in Alpine White, with 18,462 miles at the time of loss, in good condition.",
+        "category": "summarization",
+        "description": "Section-specific summarization"
+      },
+      "response": {
+        "answer": "The policyholder holds an active comprehensive private motor insurance policy that includes full own-damage protection, third-party liability, uninsured driver coverage, personal injury benefits, and legal expense protection. The collision excess is £650, which may be recovered through subrogation. The insured vehicle is a 2022 BMW 320i M Sport (registration LK22 RWT), with a mileage of 18,462 miles at the time of the incident, and it was in good condition with no prior damage reported.",
+        "retrieved_context_count": 2
+      },
+      "scores": {
+        "answer_correctness": 1.0,
+        "context_relevancy": 0.5,
+        "context_recall": 0.5
+      }
+    },
+    {
+      "test_case": {
+        "query": "What time did the collision occur on March 3rd?",
+        "expected_answer": "08:20:05",
+        "category": "needle",
+        "description": "Precise timestamp retrieval from incident description"
+      },
+      "response": {
+        "answer": "Not found in the provided context.",
+        "retrieved_context_count": 4
+      },
+      "scores": {
+        "answer_correctness": 0.0,
+        "context_relevancy": 0.375,
+        "context_recall": 0.0
+      }
+    }
+  ]
+}

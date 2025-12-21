@@ -1,0 +1,219 @@
+15:54:01 - INFO - Starting Insurance Claim Assistant CLI
+15:54:01 - INFO - Loading PDF from: C:\Users\avira\OneDrive\שולחן העבודה\AI\MidProject\data\raw\claim.pdf
+15:54:01 - INFO - Extracted text from 10 pages
+C:\Users\avira\miniconda3\envs\myenv\Lib\site-packages\dateutil\parser\_parser.py:1207: UnknownTimezoneWarning: tzname ETA identified but not understood.  Pass `tzinfos` argument in order to correctly return a timezone-aware datetime.  In a future version, this will raise an exception.
+  warnings.warn("tzname {tzname} identified but not understood.  "
+C:\Users\avira\miniconda3\envs\myenv\Lib\site-packages\dateutil\parser\_parser.py:1207: UnknownTimezoneWarning: tzname FNOL identified but not understood.  Pass `tzinfos` argument in order to correctly return a timezone-aware datetime.  In a future version, this will raise an exception.
+  warnings.warn("tzname {tzname} identified but not understood.  "
+C:\Users\avira\miniconda3\envs\myenv\Lib\site-packages\dateutil\parser\_parser.py:1207: UnknownTimezoneWarning: tzname GP identified but not understood.  Pass `tzinfos` argument in order to correctly return a timezone-aware datetime.  In a future version, this will raise an exception.
+  warnings.warn("tzname {tzname} identified but not understood.  "
+15:54:01 - INFO - Successfully loaded PDF with 26 sections
+15:54:01 - INFO - ✓ Loaded PDF: C:\Users\avira\OneDrive\שולחן העבודה\AI\MidProject\data\raw\claim.pdf
+15:54:01 - INFO - Chunking document test_document_1 hierarchically
+15:54:01 - INFO - Created hierarchical chunks: 32 small, 26 medium, 26 large
+15:54:01 - INFO - ✓ Created hierarchical chunks
+15:54:02 - INFO - [manager] Initialized LLM model for agent: gpt-4o-mini
+15:54:02 - INFO - [summarization] Initialized LLM model for agent: gpt-4o-mini
+15:54:02 - INFO - Initializing IndexManager
+15:54:02 - INFO - IndexManager initialized successfully
+15:54:02 - INFO - Loading index 'hierarchical_index' from C:\Users\avira\OneDrive\שולחן העבודה\AI\MidProject\data\indices\hierarchical_index
+15:54:02 - INFO - Initializing hierarchical index
+15:54:02 - INFO - Loaded existing collection 'hierarchical_index'
+15:54:02 - INFO - Hierarchical index initialized successfully
+15:54:02 - INFO - Successfully loaded index 'hierarchical_index'
+15:54:02 - INFO - Hierarchical index loaded successfully
+15:54:02 - INFO - Loading index 'summary_index' from C:\Users\avira\OneDrive\שולחן העבודה\AI\MidProject\data\indices\summary_index
+15:54:02 - INFO - Initializing summary index
+15:54:02 - INFO - Loaded existing collection 'summary_index'
+15:54:02 - INFO - Summary index initialized successfully
+15:54:02 - INFO - Successfully loaded index 'summary_index'
+15:54:02 - INFO - Summary index loaded successfully
+15:54:02 - INFO - SummaryRetriever initialized with model: text-embedding-3-small
+15:54:02 - INFO - [needle] Initialized LLM model for agent: gpt-4o-mini
+15:54:02 - INFO - Initializing IndexManager
+15:54:02 - INFO - IndexManager initialized successfully
+15:54:02 - INFO - Loading index 'hierarchical_index' from C:\Users\avira\OneDrive\שולחן העבודה\AI\MidProject\data\indices\hierarchical_index
+15:54:02 - INFO - Initializing hierarchical index
+15:54:02 - INFO - Loaded existing collection 'hierarchical_index'
+15:54:02 - INFO - Hierarchical index initialized successfully
+15:54:02 - INFO - Successfully loaded index 'hierarchical_index'
+15:54:02 - INFO - HierarchicalRetriever initialized with model: text-embedding-3-small, auto_merge: True
+15:54:02 - INFO - OrchestratorSystem initialized with Router, Summary, and Needle agents.
+==============================================
+ Insurance Claim Assistant
+==============================================
+Type your question about the claim.
+Type 'evel' or 'evaluation' for evaluation
+Type 'exit' or 'quit' to exit.
+
+==============================================
+>>> eval
+query: eval
+enter evaluation mode
+
+============================================================
+EVALUATION MODE
+============================================================
+Running evaluation test suite...
+
+15:54:06 - INFO - Loaded 8 test cases for evaluation
+Loaded 8 test cases
+
+15:54:06 - INFO - Orchestrator initialized for evaluation
+15:54:06 - INFO - JudgeEvaluator initialized with model: gpt-4o
+15:54:06 - INFO - Loaded 8 test cases
+15:54:06 - INFO - Test suite initialized
+Running test cases...
+15:54:06 - INFO - Running 8 test cases...
+15:54:06 - INFO - Test case 1/8
+15:54:06 - INFO - Running test case: Give me a high-level summary of what happened in this insura...
+15:54:06 - INFO - [OrchestratorSystem] Received query for processing.
+15:54:06 - INFO - [RouterAgent] Routing query: Give me a high-level summary of what happened in this insurance claim...
+15:54:07 - INFO - [RouterAgent] Routed query to summarization (source=llm, confidence=0.90)
+15:54:07 - INFO - [SummarizationExpertAgent] Handling query...
+15:54:07 - INFO - Retrieved 5 summaries for query
+15:54:11 - INFO - [OrchestratorSystem] Query handled by agent_type=summarization
+15:54:11 - INFO - [RouterAgent] Routing query: Give me a high-level summary of what happened in this insurance claim...
+15:54:11 - INFO - [RouterAgent] Routed query to summarization (source=llm, confidence=0.90)
+15:54:11 - INFO - [SummarizationExpertAgent] Handling query...
+15:54:11 - INFO - Retrieved 5 summaries for query
+15:54:20 - INFO - Test case completed. Scores: {'answer_correctness': 0.5, 'context_relevancy': 0.7, 'context_recall': 0.5}
+15:54:20 - INFO - Test case 2/8
+15:54:20 - INFO - Running test case: What is the overall timeline of the insurance claim from inc...
+15:54:20 - INFO - [OrchestratorSystem] Received query for processing.
+15:54:20 - INFO - [RouterAgent] Routing query: What is the overall timeline of the insurance claim from incident to resolution?...
+15:54:20 - INFO - [RouterAgent] Routed query to summarization (source=llm, confidence=0.90)
+15:54:20 - INFO - [SummarizationExpertAgent] Handling query...
+15:54:21 - INFO - Retrieved 5 summaries for query
+15:54:30 - INFO - [OrchestratorSystem] Query handled by agent_type=summarization
+15:54:30 - INFO - [RouterAgent] Routing query: What is the overall timeline of the insurance claim from incident to resolution?...
+15:54:30 - INFO - [RouterAgent] Routed query to summarization (source=llm, confidence=0.90)
+15:54:30 - INFO - [SummarizationExpertAgent] Handling query...
+15:54:31 - INFO - Retrieved 5 summaries for query
+15:54:42 - INFO - Test case completed. Scores: {'answer_correctness': 0.5, 'context_relevancy': 0.8, 'context_recall': 0.6666666666666666}
+15:54:42 - INFO - Test case 3/8
+15:54:42 - INFO - Running test case: What is the exact registration number of the insured vehicle...
+15:54:42 - INFO - [OrchestratorSystem] Received query for processing.
+15:54:42 - INFO - [RouterAgent] Routing query: What is the exact registration number of the insured vehicle?...
+15:54:42 - INFO - [RouterAgent] Routed query to needle (source=llm, confidence=0.90)
+15:54:42 - INFO - [NeedleInHaystackAgent] Handling query...
+n_candidates: 20
+15:54:44 - INFO - Retrieved 5 hierarchical chunks (with auto-merging)
+15:54:45 - INFO - [OrchestratorSystem] Query handled by agent_type=needle
+15:54:45 - INFO - [RouterAgent] Routing query: What is the exact registration number of the insured vehicle?...
+15:54:45 - INFO - [RouterAgent] Routed query to needle (source=llm, confidence=0.90)
+15:54:45 - INFO - [NeedleInHaystackAgent] Handling query...
+n_candidates: 20
+15:54:46 - INFO - Retrieved 5 hierarchical chunks (with auto-merging)
+15:54:50 - INFO - Test case completed. Scores: {'answer_correctness': 1.0, 'context_relevancy': 0.2, 'context_recall': 0.0}
+15:54:50 - INFO - Test case 4/8
+15:54:50 - INFO - Running test case: What was the total claim exposure amount?...
+15:54:50 - INFO - [OrchestratorSystem] Received query for processing.
+15:54:50 - INFO - [RouterAgent] Routing query: What was the total claim exposure amount?...
+15:54:50 - INFO - [RouterAgent] Routed query to needle (source=llm, confidence=0.90)
+15:54:50 - INFO - [NeedleInHaystackAgent] Handling query...
+n_candidates: 20
+15:54:51 - INFO - Retrieved 5 hierarchical chunks (with auto-merging)
+15:54:51 - INFO - [OrchestratorSystem] Query handled by agent_type=needle
+15:54:51 - INFO - [RouterAgent] Routing query: What was the total claim exposure amount?...
+15:54:52 - INFO - [RouterAgent] Routed query to needle (source=llm, confidence=0.90)
+15:54:52 - INFO - [NeedleInHaystackAgent] Handling query...
+n_candidates: 20
+15:54:52 - INFO - Retrieved 5 hierarchical chunks (with auto-merging)
+15:54:57 - INFO - Test case completed. Scores: {'answer_correctness': 1.0, 'context_relevancy': 0.1, 'context_recall': 0.0}
+15:54:57 - INFO - Test case 5/8
+15:54:57 - INFO - Running test case: What was the policy excess amount?...
+15:54:57 - INFO - [OrchestratorSystem] Received query for processing.
+15:54:57 - INFO - [RouterAgent] Routing query: What was the policy excess amount?...
+15:54:58 - INFO - [RouterAgent] Routed query to needle (source=llm, confidence=0.90)
+15:54:58 - INFO - [NeedleInHaystackAgent] Handling query...
+n_candidates: 20
+15:54:58 - INFO - Retrieved 5 hierarchical chunks (with auto-merging)
+15:54:59 - INFO - [OrchestratorSystem] Query handled by agent_type=needle
+15:54:59 - INFO - [RouterAgent] Routing query: What was the policy excess amount?...
+15:55:00 - INFO - [RouterAgent] Routed query to needle (source=llm, confidence=0.90)
+15:55:00 - INFO - [NeedleInHaystackAgent] Handling query...
+n_candidates: 20
+15:55:02 - INFO - Retrieved 5 hierarchical chunks (with auto-merging)
+15:55:05 - INFO - Test case completed. Scores: {'answer_correctness': 1.0, 'context_relevancy': 0.4, 'context_recall': 0.0}
+15:55:05 - INFO - Test case 6/8
+15:55:05 - INFO - Running test case: What color was the insured vehicle?...
+15:55:05 - INFO - [OrchestratorSystem] Received query for processing.
+15:55:05 - INFO - [RouterAgent] Routing query: What color was the insured vehicle?...
+15:55:06 - INFO - [RouterAgent] Routed query to needle (source=llm, confidence=0.90)
+15:55:06 - INFO - [NeedleInHaystackAgent] Handling query...
+n_candidates: 20
+15:55:07 - INFO - Retrieved 5 hierarchical chunks (with auto-merging)
+15:55:09 - INFO - [OrchestratorSystem] Query handled by agent_type=needle
+15:55:09 - INFO - [RouterAgent] Routing query: What color was the insured vehicle?...
+15:55:09 - INFO - [RouterAgent] Routed query to needle (source=llm, confidence=0.90)
+15:55:09 - INFO - [NeedleInHaystackAgent] Handling query...
+n_candidates: 20
+15:55:09 - INFO - Retrieved 5 hierarchical chunks (with auto-merging)
+15:55:14 - INFO - Test case completed. Scores: {'answer_correctness': 1.0, 'context_relevancy': 0.0, 'context_recall': 0.0}
+15:55:14 - INFO - Test case 7/8
+15:55:14 - INFO - Running test case: Please summarize for me section 1 content...
+15:55:14 - INFO - [OrchestratorSystem] Received query for processing.
+15:55:14 - INFO - [RouterAgent] Routing query: Please summarize for me section 1 content...
+15:55:15 - INFO - [RouterAgent] Routed query to summarization (source=llm, confidence=0.90)
+15:55:15 - INFO - [SummarizationExpertAgent] Handling query...
+15:55:15 - INFO - Retrieved 2 summaries for query
+15:55:18 - INFO - [OrchestratorSystem] Query handled by agent_type=summarization
+15:55:18 - INFO - [RouterAgent] Routing query: Please summarize for me section 1 content...
+15:55:18 - INFO - [RouterAgent] Routed query to summarization (source=llm, confidence=0.90)
+15:55:18 - INFO - [SummarizationExpertAgent] Handling query...
+15:55:18 - INFO - Retrieved 2 summaries for query
+15:55:23 - INFO - Test case completed. Scores: {'answer_correctness': 1.0, 'context_relevancy': 0.5, 'context_recall': 0.5}
+15:55:23 - INFO - Test case 8/8
+15:55:23 - INFO - Running test case: What time did the collision occur on March 3rd?...
+15:55:23 - INFO - [OrchestratorSystem] Received query for processing.
+15:55:23 - INFO - [RouterAgent] Routing query: What time did the collision occur on March 3rd?...
+15:55:24 - INFO - [RouterAgent] Routed query to needle (source=llm, confidence=0.90)
+15:55:24 - INFO - [NeedleInHaystackAgent] Handling query...
+n_candidates: 20
+15:55:25 - INFO - Retrieved 4 hierarchical chunks (with auto-merging)
+15:55:27 - INFO - [OrchestratorSystem] Query handled by agent_type=needle
+15:55:27 - INFO - [RouterAgent] Routing query: What time did the collision occur on March 3rd?...
+15:55:27 - INFO - [RouterAgent] Routed query to needle (source=llm, confidence=0.90)
+15:55:27 - INFO - [NeedleInHaystackAgent] Handling query...
+n_candidates: 20
+15:55:28 - INFO - Retrieved 4 hierarchical chunks (with auto-merging)
+15:55:32 - INFO - Test case completed. Scores: {'answer_correctness': 0.0, 'context_relevancy': 0.375, 'context_recall': 0.0}
+15:55:32 - INFO - Completed running all test cases. 8 results collected.
+15:55:32 - INFO - Completed running 8 test cases
+
+Completed running 8 test cases
+
+15:55:32 - INFO - Evaluation report saved to: C:\Users\avira\OneDrive\שולחן העבודה\AI\MidProject\results\evaluation\evaluation_report_20251221_155532.json
+15:55:32 - INFO - Evaluation report generated: C:\Users\avira\OneDrive\שולחן העבודה\AI\MidProject\results\evaluation\evaluation_report_20251221_155532.json
+
+============================================================
+EVALUATION SUMMARY
+============================================================
+Total Test Cases: 8
+
+Average Scores:
+  answer_correctness: 0.750
+  context_relevancy: 0.384
+  context_recall: 0.208
+
+Category Distribution:
+  summarization: 3
+  needle: 5
+============================================================
+
+
+Full evaluation report saved to: C:\Users\avira\OneDrive\שולחן העבודה\AI\MidProject\results\evaluation\evaluation_report_20251221_155532.json
+
+============================================================
+Evaluation completed successfully!
+============================================================
+
+==============================================
+Type your question about the claim.
+Type 'evel' or 'evaluation' for evaluation
+Type 'exit' or 'quit' to exit.
+
+==============================================
+>>>
+Exiting. Goodbye!
