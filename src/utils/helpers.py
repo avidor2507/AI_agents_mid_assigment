@@ -9,9 +9,39 @@ This module contains common utility functions used throughout the application:
 """
 
 import re
+import warnings
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 from dateutil import parser as date_parser
+
+
+def _preprocess_text_for_parsing(text: str) -> str:
+    """
+    Preprocess text to remove common abbreviations that cause timezone warnings.
+    
+    Removes insurance/document-specific abbreviations that dateutil might
+    misinterpret as timezone names (e.g., ETA, FNOL, GP).
+    
+    Args:
+        text: Text to preprocess
+        
+    Returns:
+        Preprocessed text with problematic abbreviations removed
+    """
+    # Common abbreviations that cause timezone warnings
+    # These are insurance/document terms, not timezones
+    problematic_abbreviations = [
+        r'\bETA\b',      # Estimated Time of Arrival
+        r'\bFNOL\b',     # First Notice of Loss
+        r'\bGP\b',       # General Practitioner or other insurance term
+    ]
+    
+    preprocessed = text
+    for pattern in problematic_abbreviations:
+        # Replace with space to maintain word boundaries
+        preprocessed = re.sub(pattern, ' ', preprocessed, flags=re.IGNORECASE)
+    
+    return preprocessed
 
 
 def parse_timestamp(text: str) -> Optional[datetime]:
@@ -31,24 +61,34 @@ def parse_timestamp(text: str) -> Optional[datetime]:
         >>> parse_timestamp("Event occurred on 2024-12-10 at 14:30:00")
         datetime.datetime(2024, 12, 10, 14, 30, 0)
     """
-    # Try to find common timestamp patterns
+    # Try to find common timestamp patterns first (more specific, no fuzzy needed)
     patterns = [
         r'\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}',  # YYYY-MM-DD HH:MM:SS
+        r'\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}',         # YYYY-MM-DD HH:MM
         r'\d{4}-\d{2}-\d{2}',                       # YYYY-MM-DD
+        r'\d{2}/\d{2}/\d{4}\s+\d{2}:\d{2}:\d{2}',   # MM/DD/YYYY HH:MM:SS
+        r'\d{2}/\d{2}/\d{4}\s+\d{2}:\d{2}',         # MM/DD/YYYY HH:MM
         r'\d{2}/\d{2}/\d{4}',                       # MM/DD/YYYY
+        r'\d{2}-\d{2}-\d{4}\s+\d{2}:\d{2}:\d{2}',   # DD-MM-YYYY HH:MM:SS
+        r'\d{2}-\d{2}-\d{4}',                       # DD-MM-YYYY
     ]
     
     for pattern in patterns:
         match = re.search(pattern, text)
         if match:
             try:
-                return date_parser.parse(match.group())
+                # Parse the matched pattern directly (no fuzzy needed for clean patterns)
+                return date_parser.parse(match.group(), fuzzy=False)
             except (ValueError, date_parser.ParserError):
                 continue
     
-    # Try parsing the entire text
+    # Only use fuzzy parsing as last resort, and preprocess to avoid warnings
+    preprocessed_text = _preprocess_text_for_parsing(text)
     try:
-        return date_parser.parse(text, fuzzy=True)
+        # Suppress warnings during fuzzy parsing since we've preprocessed
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', category=UserWarning, module='dateutil')
+            return date_parser.parse(preprocessed_text, fuzzy=True)
     except (ValueError, date_parser.ParserError):
         return None
 

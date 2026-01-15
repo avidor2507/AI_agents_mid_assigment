@@ -65,7 +65,7 @@ class SummarizationExpertAgent(BaseAgent):
 
         # Retrieve high-level summaries
         try:
-            results = self._retriever.retrieve(q, top_k=5, use_section_rerank=True)
+            results = self._retriever.retrieve(q, top_k=10, use_section_rerank=True)
         except Exception as e:
             raise RetrievalError(f"Error retrieving summaries for agent: {e}") from e
 

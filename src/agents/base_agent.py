@@ -29,6 +29,7 @@ from langchain_core.messages import (
     ToolMessage,
 )
 
+
 class AgentInterface(ABC):
     """
     Minimal interface for all agents in the system.
@@ -166,7 +167,7 @@ class BaseAgent(AgentInterface, ABC):
 
             # No tool calls → final answer
             # Extract text content from AIMessage object
-            if hasattr(response, 'content'):
+            if hasattr(response, "content"):
                 return str(response.content) if response.content else ""
             # Fallback: convert to string if content attribute doesn't exist
             return str(response)

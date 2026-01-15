@@ -67,7 +67,7 @@ class NeedleInHaystackAgent(BaseAgent):
         try:
             results = self._retriever.retrieve(
                 q,
-                top_k=5,
+                top_k=10,
                 filters=None,
                 start_level=ChunkSize.SMALL.value,
                 use_time_rerank=True,

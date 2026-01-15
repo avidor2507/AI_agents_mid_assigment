@@ -1,5 +1,5 @@
 """
-TestCase dataclass for evaluation.
+EvalCase dataclass for evaluation.
 
 Defines the structure of a test case used in evaluation.
 """
@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Optional
 
 
 @dataclass
-class TestCase:
+class EvalCase:
     """
     Represents a single test case for evaluation.
     
@@ -27,11 +27,12 @@ class TestCase:
     ground_truth: Dict[str, Any] = field(default_factory=dict)
     category: Optional[str] = None
     description: Optional[str] = None
+    expected_score: Optional[int] = 1
     
     def __post_init__(self):
         """Validate test case data."""
         if not self.query or not self.query.strip():
-            raise ValueError("TestCase query cannot be empty")
+            raise ValueError("EvalCase query cannot be empty")
         if not self.expected_answer or not self.expected_answer.strip():
-            raise ValueError("TestCase expected_answer cannot be empty")
+            raise ValueError("EvalCase expected_answer cannot be empty")
 

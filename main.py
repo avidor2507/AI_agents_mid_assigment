@@ -1,43 +1,14 @@
 from __future__ import annotations
 from typing import NoReturn
-from src.indexing.index_manager import IndexManager
 from src.agents.orchestrator_system import OrchestratorSystem
-from src.utils.exceptions import IndexingError, AgentError, ConfigurationError, EvaluationError
+from src.utils.exceptions import  AgentError, EvaluationError
 from src.utils.logger import logger
-from src.data.pdf_loader import PDFLoader
 from src.config.settings import config
-from src.data.chunker import HierarchicalChunker
-from src.evaluation import TestSuite, get_test_cases
+from src.evaluation import EvalSuite, get_test_cases
 from datetime import datetime
 from logging import Logger
+from src.helpers.agent_helper import init
 
-
-def _init() -> tuple[Logger, OrchestratorSystem]:
-    log: Logger = logger
-
-    # Initialize and load indices
-    index_manager = IndexManager()
-    try:
-        log.info("Starting Insurance Claim Assistant CLI")
-        _load_pdf(index_manager, log)
-    except (IndexingError, ConfigurationError) as e:
-        log.error(f"Failed to initialize indices: {e}", exc_info=True)
-        raise e
-    except Exception as e:
-        log.error(f"Unexpected error during index initialization: {e}", exc_info=True)
-        raise e
-
-    # Initialize orchestrator and agents
-    try:
-        orchestrator = OrchestratorSystem()
-    except AgentError as e:
-        log.error(f"Failed to initialize agents: {e}", exc_info=True)
-        raise e
-    except Exception as e:
-        log.error(f"Unexpected error initializing agents: {e}", exc_info=True)
-        raise e
-
-    return log, orchestrator
 def _system(log: Logger, orchestrator: OrchestratorSystem) -> None:
     print("==============================================")
     print(" Insurance Claim Assistant")
@@ -73,39 +44,6 @@ def _system(log: Logger, orchestrator: OrchestratorSystem) -> None:
             print("enter query mode")
             _query_mode(orchestrator, query, log)
             continue
-def _load_pdf(index_manager: IndexManager, log: Logger) -> None:
-    pdf_path = config.RAW_DATA_DIR / "claim.pdf"
-    if not pdf_path.exists():
-        message = "PDF not found at {pdf_path}"
-        log.error(message)
-        raise Exception(message)
-    try:
-        loader = PDFLoader()
-        document = loader.load(pdf_path)
-        log.info(f"✓ Loaded PDF: {pdf_path}")
-    except Exception as e:
-        log.error(f"✗ Error loading PDF from {pdf_path}: {e}")
-        raise e
-
-    try:
-        chunker = HierarchicalChunker()
-        hierarchical_structure = chunker.chunk_document(
-                    document,
-                    document_id="test_document_1",
-                    claim_id="test_claim_1"
-        )
-        log.info("✓ Created hierarchical chunks")
-    except Exception as e:
-        log.error(f"✗ Error chunking document: {e}")
-        raise e
-    indices_exist = index_manager.check_indices_exist()
-    if not indices_exist:
-        try:
-            index_manager.build_indices(hierarchical_structure)
-            log.info("✓ Indices built successfully")
-        except Exception as e:
-            log.error(f"✗ Error building indices: {e}")
-            raise e
 def _query_mode(orchestrator: OrchestratorSystem, query: str, log: Logger) -> None:
     try:
         result = orchestrator.handle_query(query)
@@ -147,7 +85,7 @@ def _evaluation_mode(orchestrator: OrchestratorSystem, log: Logger) -> None:
         
         # Create test suite
         try:
-            test_suite = TestSuite(orchestrator=orchestrator)
+            test_suite = EvalSuite(orchestrator=orchestrator)
             test_suite.load_test_cases(test_cases)
             log.info("Test suite initialized")
         except EvaluationError as e:
@@ -208,7 +146,8 @@ def _evaluation_mode(orchestrator: OrchestratorSystem, log: Logger) -> None:
 
 def main() -> NoReturn:
     #initialize
-    log, orchestrator = _init()
+    log, orchestrator = init()
+
     # Simple CLI loop
     _system(log, orchestrator)
 

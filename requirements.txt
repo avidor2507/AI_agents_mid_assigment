@@ -25,3 +25,7 @@ python-dotenv
 tiktoken
 python-dateutil
 tqdm
+
+#testing
+pytest
+pytest-html

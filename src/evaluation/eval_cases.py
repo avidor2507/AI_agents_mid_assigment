@@ -9,13 +9,13 @@ This module defines test cases covering various query types:
 - Mixed complexity queries
 """
 
-from src.evaluation.test_case import TestCase
+from src.evaluation.eval_case import EvalCase
 
 
 # Test cases for evaluation
 EVALUATION_TEST_CASES = [
     # High-level summary questions
-    TestCase(
+    EvalCase(
         query="Give me a high-level summary of what happened in this insurance claim",
         expected_answer=(
             "The claim involves a motor vehicle collision where the insured vehicle, "
@@ -33,7 +33,7 @@ EVALUATION_TEST_CASES = [
     ),
     
     # Timeline question
-    TestCase(
+    EvalCase(
         query="What is the overall timeline of the insurance claim from incident to resolution?",
         expected_answer=(
             "The claim timeline includes: the incident occurred (collision at intersection), "
@@ -52,7 +52,7 @@ EVALUATION_TEST_CASES = [
     ),
     
     # Precise factual query - Registration number
-    TestCase(
+    EvalCase(
         query="What is the exact registration number of the insured vehicle?",
         expected_answer="LK22 RWT",
         expected_context=[
@@ -63,7 +63,7 @@ EVALUATION_TEST_CASES = [
     ),
     
     # Precise factual query - Amount
-    TestCase(
+    EvalCase(
         query="What was the total claim exposure amount?",
         expected_answer="£22,625.20",
         expected_context=[
@@ -74,7 +74,7 @@ EVALUATION_TEST_CASES = [
     ),
     
     # Precise factual query - Policy excess
-    TestCase(
+    EvalCase(
         query="What was the policy excess amount?",
         expected_answer="£650",
         expected_context=[
@@ -85,7 +85,7 @@ EVALUATION_TEST_CASES = [
     ),
     
     # Needle-in-haystack query - Specific detail
-    TestCase(
+    EvalCase(
         query="What color was the insured vehicle?",
         expected_answer="Alpine White",
         expected_context=[
@@ -96,7 +96,7 @@ EVALUATION_TEST_CASES = [
     ),
     
     # Section-specific summary
-    TestCase(
+    EvalCase(
         query="Please summarize for me section 1 content",
         expected_answer=(
             "Section 1 describes the policyholder's comprehensive private motor insurance policy, "
@@ -114,7 +114,7 @@ EVALUATION_TEST_CASES = [
     ),
     
     # Mixed complexity - Specific timestamp query
-    TestCase(
+    EvalCase(
         query="What time did the collision occur on March 3rd?",
         expected_answer="08:20:05",
         expected_context=[
@@ -126,12 +126,12 @@ EVALUATION_TEST_CASES = [
 ]
 
 
-def get_test_cases() -> list[TestCase]:
+def get_test_cases() -> list[EvalCase]:
     """
     Get all evaluation test cases.
     
     Returns:
-        List of TestCase objects
+        List of EvalCase objects
     """
     return EVALUATION_TEST_CASES.copy()
 
